@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import NavBar from './component/navigationBar/navBar.js';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Login from './component/logedIn/Login';
+import Login from './component/logedIn/Login.jsx';
+import Signup from './component/logedIn/Signup.jsx';
 import Canvas from './component/logedIn/canvas.jsx';
 import Home from './component/logedIn/home';
 class App extends Component {
@@ -74,6 +75,17 @@ class App extends Component {
 			renderHome = <Route path="/" component={Home} />;
 		}
 
+		let renderLogin;
+		let renderSignUp;
+		let renderHome;
+		if (!this.state.logStatus) {
+			renderLogin = <Route path="/login" render={(routeProps) => <Login onLogged={this.onLogged} />} />;
+
+			renderSignUp = <Route path="/signup" render={(routeProps) => <Signup onSignUp={this.onSignUp} />} />;
+
+			renderHome = <Route path="/" component={Home} />;
+		}
+
 		return (
 			<Router>
 				<div>
@@ -81,6 +93,7 @@ class App extends Component {
 					<Switch>
 						{/* <Route path="/login"  component={Login} /> */}
 						{renderLogin}
+						{renderSignUp}
 						{/* <Route path="/canvas"  component={Canvas}/> */}
 						{renderHome}
 					</Switch>
