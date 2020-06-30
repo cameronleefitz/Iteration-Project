@@ -71,21 +71,6 @@ class App extends Component {
 		}
 
 		let renderLogin;
-		if (!this.state.logStatus) {
-			renderLogin = (
-				<Route
-					path="/login"
-					render={(routeProps) => <Login onSignUp={this.onSignUp} onLogged={this.onLogged} />}
-				/>
-			);
-		}
-
-		let renderHome;
-		if (!this.state.logStatus) {
-			renderHome = <Route path="/" component={Home} />;
-		}
-
-		let renderLogin;
 		let renderSignUp;
 		let renderHome;
 		if (!this.state.logStatus) {
